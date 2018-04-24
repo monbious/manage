@@ -1,7 +1,7 @@
 package initial
 
 import (
-	"opms/utils"
+	"manage/utils"
 )
 
 func InitCache() {

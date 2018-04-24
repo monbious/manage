@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"fmt"
-	. "opms/models/messages"
+	. "manage/models/messages"
 	"strconv"
 	"strings"
 

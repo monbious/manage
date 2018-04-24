@@ -2,9 +2,9 @@ package users
 
 import (
 	//"fmt"
-	"opms/controllers"
-	. "opms/models/users"
-	"opms/utils"
+	"manage/controllers"
+	. "manage/models/users"
+	"manage/utils"
 	"strconv"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/utils/pagination"

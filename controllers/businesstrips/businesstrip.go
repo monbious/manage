@@ -2,11 +2,11 @@ package businesstrips
 
 import (
 	"fmt"
-	"opms/controllers"
-	. "opms/models/businesstrips"
-	. "opms/models/messages"
-	. "opms/models/users"
-	"opms/utils"
+	"manage/controllers"
+	. "manage/models/businesstrips"
+	. "manage/models/messages"
+	. "manage/models/users"
+	"manage/utils"
 	"os"
 	"strconv"
 	"strings"

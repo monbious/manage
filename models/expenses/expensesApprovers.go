@@ -2,11 +2,8 @@ package expenses
 
 import (
 	//"fmt"
-	"opms/models"
-	//"opms/utils"
+	"manage/models"
 	"time"
-
-	//"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 )
 

@@ -1,10 +1,9 @@
 package users
 
 import (
-	"opms/models"
+	"manage/models"
 	"time"
 
-	//"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego"
 )

@@ -3,11 +3,8 @@ package checkworks
 import (
 	//"fmt"
 	//"math/rand"
-	"opms/models"
-	//"opms/utils"
+	"manage/models"
 	"time"
-
-	//"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 )
 

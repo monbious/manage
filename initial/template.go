@@ -2,15 +2,12 @@ package initial
 
 import (
 	//"fmt"
-	"opms/models/businesstrips"
-	"opms/models/expenses"
-	//"opms/models/goouts"
-	"opms/models/leaves"
-	//"opms/models/oagoods"
-	"opms/models/overtimes"
-	//"opms/models/projects"
-	"opms/models/users"
-	"opms/utils"
+	"manage/models/businesstrips"
+	"manage/models/expenses"
+	"manage/models/leaves"
+	"manage/models/overtimes"
+	"manage/models/users"
+	"manage/utils"
 	//"time"
 
 	"github.com/astaxie/beego"

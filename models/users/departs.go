@@ -2,8 +2,8 @@ package users
 
 import (
 	"fmt"
-	"opms/models"
-	"opms/utils"
+	"manage/models"
+	"manage/utils"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"

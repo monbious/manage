@@ -3,8 +3,8 @@ package users
 import (
 	"fmt"
 	"math/rand"
-	"opms/models"
-	"opms/utils"
+	"manage/models"
+	"manage/utils"
 	"time"
 
 	"github.com/astaxie/beego"

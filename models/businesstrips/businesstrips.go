@@ -2,8 +2,8 @@ package businesstrips
 
 import (
 	"fmt"
-	"opms/models"
-	"opms/utils"
+	"manage/models"
+	"manage/utils"
 	"time"
 
 	"github.com/astaxie/beego"

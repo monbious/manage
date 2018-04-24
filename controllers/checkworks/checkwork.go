@@ -3,9 +3,9 @@ package checkworks
 import (
 	"fmt"
 
-	"opms/controllers"
-	. "opms/models/checkworks"
-	"opms/utils"
+	"manage/controllers"
+	. "manage/models/checkworks"
+	"manage/utils"
 	"time"
 
 	"github.com/astaxie/beego"

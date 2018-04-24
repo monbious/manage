@@ -2,11 +2,11 @@ package leaves
 
 import (
 	"fmt"
-	"opms/controllers"
-	. "opms/models/leaves"
-	. "opms/models/messages"
-	. "opms/models/users"
-	"opms/utils"
+	"manage/controllers"
+	. "manage/models/leaves"
+	. "manage/models/messages"
+	. "manage/models/users"
+	"manage/utils"
 	"os"
 	"strconv"
 	"strings"

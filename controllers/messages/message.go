@@ -2,8 +2,8 @@ package messages
 
 import (
 	"fmt"
-	"opms/controllers"
-	. "opms/models/messages"
+	"manage/controllers"
+	. "manage/models/messages"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/utils/pagination"
 )

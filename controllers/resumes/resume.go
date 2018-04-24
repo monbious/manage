@@ -2,9 +2,9 @@ package resumes
 
 import (
 	"fmt"
-	"opms/controllers"
-	. "opms/models/resumes"
-	"opms/utils"
+	"manage/controllers"
+	. "manage/models/resumes"
+	"manage/utils"
 	"os"
 	"strconv"
 	"strings"

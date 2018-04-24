@@ -2,11 +2,11 @@ package overtimes
 
 import (
 	"fmt"
-	"opms/controllers"
-	. "opms/models/messages"
-	. "opms/models/overtimes"
-	. "opms/models/users"
-	"opms/utils"
+	"manage/controllers"
+	. "manage/models/messages"
+	. "manage/models/overtimes"
+	. "manage/models/users"
+	"manage/utils"
 	"strconv"
 	"strings"
 

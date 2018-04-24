@@ -2,11 +2,11 @@ package expenses
 
 import (
 	"fmt"
-	"opms/controllers"
-	. "opms/models/expenses"
-	. "opms/models/messages"
-	. "opms/models/users"
-	"opms/utils"
+	"manage/controllers"
+	. "manage/models/expenses"
+	. "manage/models/messages"
+	. "manage/models/users"
+	"manage/utils"
 	"os"
 	"strconv"
 	"strings"

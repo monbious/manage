@@ -1,20 +1,14 @@
 package routers
 
 import (
-	//"opms/controllers/albums"
-	"opms/controllers/businesstrips"
-	"opms/controllers/checkworks"
-	"opms/controllers/expenses"
-	//"opms/controllers/goouts"
-	//"opms/controllers/groups"
-	//"opms/controllers/knowledges"
-	"opms/controllers/leaves"
-	"opms/controllers/messages"
-	//"opms/controllers/oagoods"
-	"opms/controllers/overtimes"
-	//"opms/controllers/projects"
-	"opms/controllers/resumes"
-	"opms/controllers/users"
+	"manage/controllers/businesstrips"
+	"manage/controllers/checkworks"
+	"manage/controllers/expenses"
+	"manage/controllers/leaves"
+	"manage/controllers/messages"
+	"manage/controllers/overtimes"
+	"manage/controllers/resumes"
+	"manage/controllers/users"
 
 	"github.com/astaxie/beego"
 )
