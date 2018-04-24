@@ -1,0 +1,2 @@
+MySQL OracleServiceORCL 
+AL32UTF8
