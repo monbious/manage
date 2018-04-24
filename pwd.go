@@ -1,7 +1,7 @@
 package main
 
 import (
-	"opms/utils"
+	"manage/utils"
 )
 
 func main() {

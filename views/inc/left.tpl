@@ -10,7 +10,7 @@
       <div class="media logged-user"> <img alt="{{.LoginUsername}}" src="{{getAvatar .LoginAvatar}}" class="media-object">
         <div class="media-body">
           <h4><a href="/user/show/{{.LoginUserid}}">{{.LoginUsername}}</a></h4>
-          <span>opms系统</span> </div>
+          <span>员工管理系统</span> </div>
       </div>
       <h5 class="left-nav-title">控制台</h5>
       <ul class="nav nav-pills nav-stacked custom-nav">

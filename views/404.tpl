@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>opms管理系统</title>
+<title>员工管理系统</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="author" content="lock">
-<link rel="shortcut icon" href="/static/img/favicon.ico" type="image/png">
+<link rel="shortcut icon" href="" type="image/png">
 <link href="/static/css/style.css" rel="stylesheet">
 <link href="/static/css/style-responsive.css" rel="stylesheet">
 <!--[if lt IE 9]>
