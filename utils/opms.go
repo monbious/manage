@@ -223,18 +223,9 @@ func GetMessageType(ctype int) string {
 	return txt
 }
 
-//11知识评论12相册评论21知识赞22相册赞31请假审批32加班33报销34出差35外出36物品
 func GetMessageSubtype(subtype int) string {
 	var txt string
 	switch subtype {
-	case 11:
-		txt = "知识"
-	case 12:
-		txt = "相册"
-	case 21:
-		txt = "知识"
-	case 22:
-		txt = "相册"
 	case 31:
 		txt = "请假"
 	case 32:
@@ -243,10 +234,6 @@ func GetMessageSubtype(subtype int) string {
 		txt = "报销"
 	case 34:
 		txt = "出差"
-	case 35:
-		txt = "外出"
-	case 36:
-		txt = "物品"
 	}
 	return txt
 }

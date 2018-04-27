@@ -106,14 +106,12 @@ func (this *ShowLeaveController) Get() {
 	leave, err := GetLeave(int64(id))
 	if err != nil {
 		this.Abort("404")
-
 	}
 	this.Data["leave"] = leave
 	_, _, approvers := ListLeaveApproverProcess(leave.Id)
 	this.Data["approvers"] = approvers
 
 	if this.BaseController.UserUserId != leave.Userid {
-
 		//检测是否可以审批和是否已审批过
 		checkApproverid, checkStatus := CheckLeaveApprover(leave.Id, this.BaseController.UserUserId)
 		if 0 == checkApproverid {

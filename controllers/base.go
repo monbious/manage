@@ -41,7 +41,7 @@ func (this *BaseController) Prepare() {
 		msgcondArr["touserid"] = fmt.Sprintf("%d", longid)
 		msgcondArr["view"] = "1"
 		countTopMessage := CountMessages(msgcondArr)
-		_, _, topMessages := ListMessages(msgcondArr, 1, 10)
+		_, _, topMessages := ListMessages(msgcondArr, 1, 5)
 		this.Data["topMessages"] = topMessages
 		this.Data["countTopMessage"] = countTopMessage
 	}
