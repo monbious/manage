@@ -17,8 +17,8 @@
       <!--toggle button end-->
       <!--search start-->
       <form class="searchform" action="/checkwork/all" method="get">
-        <input type="text" id="team-username" class="form-control js-search-username" placeholder="请输入姓名或用户名匹配">
-        <input type="hidden" name="userid" id="userid" value="{{.condArr.userId}}">
+        <input type="text" id="team-username" name = "keyword" class="form-control js-search-username" placeholder="请输入姓名或用户名匹配">
+        <!--<input type="hidden" name="userid" id="userid" value="{{.condArr.userId}}">-->
         <button type="submit" class="btn btn-primary">搜索</button>
       </form>
       <!--search end-->
@@ -116,7 +116,8 @@ $(function(){
 	
 	$('#ym').on('change', function(){
 		//alert(window.location.href)
-		window.location.href='/checkwork/all?userid='+$('#userid').val()+'&date='+$(this).val();
+		//window.location.href='/checkwork/all?userid='+$('#userid').val()+'&date='+$(this).val();
+        window.location.href='/checkwork/all?date='+$(this).val();
 	});
 	$('#ym option').each(function(i){	  
 		if ({{.condArr.date}} == $(this).attr('value')) {

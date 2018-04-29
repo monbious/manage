@@ -57,7 +57,7 @@ func ListCheckworkAll(condArr map[string]string) (num int64, err error, checkwor
 	qb.Select("u.userid", "u.realname", "ck.ip", "GROUP_CONCAT(ck.clock SEPARATOR '   ~  ') AS clock", "FROM_UNIXTIME(ck.created,'%Y-%m-%d') AS date").
 		From(models.TableName("checkworks") + " AS ck").
 		LeftJoin(models.TableName("users_profile") + " AS u").On("u.userid = ck.userid").
-		Where("ck.userid=?")
+		Where("ck.userid > 0")
 
 	if condArr["date"] != "" {
 		qb.And("FROM_UNIXTIME(ck.created,'%Y-%m')='" + condArr["date"] + "'")
@@ -66,14 +66,15 @@ func ListCheckworkAll(condArr map[string]string) (num int64, err error, checkwor
 		qb.And("u.realname='" + condArr["keyword"] + "'")
 	}
 
-	qb.GroupBy("FROM_UNIXTIME(ck.created,'%Y-%m-%d')")
+	qb.GroupBy("u.userid, FROM_UNIXTIME(ck.created,'%Y-%m-%d')")
+	//qb.OrderBy("u.realname").Asc()
 	qb.OrderBy("ck.created").Desc()
 
 	sql := qb.String()
 	o := orm.NewOrm()
 
 	var checkworks []CheckworksAll
-	nums, errs := o.Raw(sql, condArr["userId"]).QueryRows(&checkworks)
+	nums, errs := o.Raw(sql).QueryRows(&checkworks)
 	return nums, errs, checkworks
 }
 

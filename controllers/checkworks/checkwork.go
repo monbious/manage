@@ -54,19 +54,20 @@ type ManageCheckworkAllController struct {
 
 func (this *ManageCheckworkAllController) Get() {
 	date := this.GetString("date")
+
 	if "" == date {
 		date = time.Now().Format("2006-01")
 	}
 
-	userId, err := this.GetInt64("userid")
-	if err != nil {
-		userId = this.BaseController.UserUserId
-	}
+	//userId, err := this.GetInt64("userid")
+	//if err != nil {
+	userId := this.BaseController.UserUserId
+	//}
 
 	condArr := make(map[string]string)
 	condArr["date"] = date
-	condArr["userId"] = fmt.Sprintf("%d", userId)
-
+	//condArr["userId"] = fmt.Sprintf("%d", userId)
+	condArr["keyword"] = this.GetString("keyword")
 	_, _, checkworks := ListCheckworkAll(condArr)
 	this.Data["condArr"] = condArr
 	this.Data["checkworks"] = checkworks

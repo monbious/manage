@@ -29,7 +29,7 @@ func (this *ManageResumeController) Get() {
 
 	offset, err1 := beego.AppConfig.Int("pageoffset")
 	if err1 != nil {
-		offset = 15
+		offset = 10
 	}
 
 	condArr := make(map[string]string)

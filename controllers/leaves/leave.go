@@ -249,7 +249,6 @@ func (this *AddLeaveController) Post() {
 
 	if err == nil {
 		defer f.Close()
-
 		//生成上传路径
 		now := time.Now()
 		dir := "./static/uploadfile/" + strconv.Itoa(now.Year()) + "-" + strconv.Itoa(int(now.Month())) + "/" + strconv.Itoa(now.Day())
@@ -260,14 +259,12 @@ func (this *AddLeaveController) Post() {
 			return
 		}
 		filename := h.Filename
-		if err != nil {
-			this.Data["json"] = map[string]interface{}{"code": 0, "message": err}
-			this.ServeJSON()
-			return
-		} else {
 			this.SaveToFile("picture", dir+"/"+filename)
 			filepath = strings.Replace(dir, ".", "", 1) + "/" + filename
-		}
+	}else{
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": err}
+		this.ServeJSON()
+		return
 	}
 
 	var leave Leaves
