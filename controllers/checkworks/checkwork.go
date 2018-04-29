@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/utils/pagination"
 )
 
 //用户个人考勤
@@ -19,6 +20,15 @@ type ManageCheckworkController struct {
 func (this *ManageCheckworkController) Get() {
 	typec := this.GetString("type")
 	date := this.GetString("date")
+	page, err := this.GetInt("p")
+
+	if err != nil {
+		page = 1
+	}
+	offset, err1 := beego.AppConfig.Int("pageoffset")
+	if err1 != nil{
+		offset = 10
+	}
 	if "" == date {
 		date = time.Now().Format("2006-01")
 	}
@@ -27,10 +37,15 @@ func (this *ManageCheckworkController) Get() {
 	condArr["type"] = typec
 	condArr["date"] = date
 	condArr["userId"] = fmt.Sprintf("%d", this.BaseController.UserUserId)
-	_, _, checkworks := ListCheckwork(condArr)
+
+	countPersonCheckwork := CountPersonCheckwork(condArr)
+	paginator := pagination.SetPaginator(this.Ctx, offset, countPersonCheckwork)
+	_, _, checkworks := ListCheckwork(condArr, page, offset)
+
 	this.Data["condArr"] = condArr
 	this.Data["checkworks"] = checkworks
-
+	this.Data["countPersonCheckwork"] = countPersonCheckwork
+	this.Data["paginator"] = paginator
 	this.Data["year"] = time.Now().Format("2006")
 	this.Data["month"] = time.Now().Format("1")
 
@@ -53,29 +68,39 @@ type ManageCheckworkAllController struct {
 }
 
 func (this *ManageCheckworkAllController) Get() {
+
+	page, err := this.GetInt("p")
 	date := this.GetString("date")
 
 	if "" == date {
 		date = time.Now().Format("2006-01")
 	}
-
-	//userId, err := this.GetInt64("userid")
-	//if err != nil {
-	userId := this.BaseController.UserUserId
-	//}
+	if err != nil {
+		page = 1
+	}
+	offset, err1 := beego.AppConfig.Int("pageoffset")
+	if err1 != nil{
+		offset = 10
+	}
 
 	condArr := make(map[string]string)
 	condArr["date"] = date
-	//condArr["userId"] = fmt.Sprintf("%d", userId)
 	condArr["keyword"] = this.GetString("keyword")
-	_, _, checkworks := ListCheckworkAll(condArr)
+
+	countCheckAll := CountCheckAll(condArr)
+	paginator := pagination.SetPaginator(this.Ctx, offset, countCheckAll)
+	_, _, checkworks := ListCheckworkAll(condArr, page, offset)
+
+	this.Data["paginator"] = paginator
 	this.Data["condArr"] = condArr
 	this.Data["checkworks"] = checkworks
+	this.Data["countCheckAll"] = countCheckAll
 
 	this.Data["year"] = time.Now().Format("2006")
 	this.Data["month"] = time.Now().Format("1")
 
 	//统计
+	userId := this.BaseController.UserUserId
 	countCheckworks, _ := CountCheckwork(date, userId)
 	this.Data["countCheckworks"] = countCheckworks
 

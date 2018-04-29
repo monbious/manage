@@ -24,8 +24,34 @@ func init() {
 	orm.RegisterModel(new(Checkworks))
 }
 
+func CountPersonCheckwork(condArr map[string]string) int64 {
+	qb, _ := orm.NewQueryBuilder("mysql")
+	qb.Select("count(*)").From(models.TableName("checkworks")).Where("userid=?")
+	if condArr["type"] != "" {
+		qb.And("type=" + condArr["type"])
+	}
+	if condArr["date"] != "" {
+		qb.And("FROM_UNIXTIME(created,'%Y-%m')='" + condArr["date"] + "'")
+	}
+
+	sql := qb.String()
+	o := orm.NewOrm()
+
+	var counts []int64
+	o.Raw(sql, condArr["userId"]).QueryRows(&counts)
+	if len(counts) > 0 {
+		sum := int64(0)
+		for _, count := range counts{
+			sum += count
+		}
+		return sum
+	}else {
+		return 0
+	}
+}
+
 //个人用户考勤列表30/31条
-func ListCheckwork(condArr map[string]string) (num int64, err error, checkwork []Checkworks) {
+func ListCheckwork(condArr map[string]string, page int, offset int) (num int64, err error, checkwork []Checkworks) {
 	qb, _ := orm.NewQueryBuilder("mysql")
 	qb.Select("*").From(models.TableName("checkworks")).Where("userid=?")
 	if condArr["type"] != "" {
@@ -34,7 +60,7 @@ func ListCheckwork(condArr map[string]string) (num int64, err error, checkwork [
 	if condArr["date"] != "" {
 		qb.And("FROM_UNIXTIME(created,'%Y-%m')='" + condArr["date"] + "'")
 	}
-	qb.OrderBy("created").Desc()
+	qb.OrderBy("created").Desc().Limit(offset).Offset((page - 1) * offset)
 
 	sql := qb.String()
 	o := orm.NewOrm()
@@ -52,23 +78,52 @@ type CheckworksAll struct {
 	Ip       string
 }
 
-func ListCheckworkAll(condArr map[string]string) (num int64, err error, checkwork []CheckworksAll) {
+func CountCheckAll(condArr map[string]string) int64 {
+	qb, _ :=orm.NewQueryBuilder("mysql")
+	qb.Select("count(ck.userid)").From(models.TableName("checkworks") + " as ck").
+		LeftJoin(models.TableName("users_profile") + " as u").On("u.userid = ck.userid").
+		Where("FROM_UNIXTIME(ck.created,'%Y-%m')='" + condArr["date"] + "'")
+	if condArr["keyword"] != "" {
+		qb.And("u.realname = '" + condArr["keyword"] + "'")
+		//qb.And("CONTAINS(u.realname, '*" + condArr["keyword"] + "*')")
+	}
+
+	qb.GroupBy("ck.userid, FROM_UNIXTIME(ck.created,'%Y-%m-%d')")
+	qb.OrderBy("ck.created").Desc()
+
+	sql := qb.String()
+	o := orm.NewOrm()
+	var counts []int64
+	o.Raw(sql).QueryRows(&counts)
+	if len(counts) > 0 {
+		sum := int64(0)
+		for _, count := range counts{
+			sum += count
+		}
+		return sum/2
+	}else {
+		return 0
+	}
+}
+
+func ListCheckworkAll(condArr map[string]string, page int, offset int) (num int64, err error, checkwork []CheckworksAll) {
 	qb, _ := orm.NewQueryBuilder("mysql")
 	qb.Select("u.userid", "u.realname", "ck.ip", "GROUP_CONCAT(ck.clock SEPARATOR '   ~  ') AS clock", "FROM_UNIXTIME(ck.created,'%Y-%m-%d') AS date").
 		From(models.TableName("checkworks") + " AS ck").
 		LeftJoin(models.TableName("users_profile") + " AS u").On("u.userid = ck.userid").
 		Where("ck.userid > 0")
 
-	if condArr["date"] != "" {
-		qb.And("FROM_UNIXTIME(ck.created,'%Y-%m')='" + condArr["date"] + "'")
-	}
 	if condArr["keyword"] != "" {
 		qb.And("u.realname='" + condArr["keyword"] + "'")
+		//qb.And("CONTAINS(u.realname, '*" + condArr["keyword"] + "*')")
+	}
+	if condArr["date"] != "" {
+		qb.And("FROM_UNIXTIME(ck.created,'%Y-%m')='" + condArr["date"] + "'")
 	}
 
 	qb.GroupBy("u.userid, FROM_UNIXTIME(ck.created,'%Y-%m-%d')")
 	//qb.OrderBy("u.realname").Asc()
-	qb.OrderBy("ck.created").Desc()
+	qb.OrderBy("ck.created").Desc().Limit(offset).Offset((page - 1) * offset)
 
 	sql := qb.String()
 	o := orm.NewOrm()

@@ -76,7 +76,7 @@
             </div>
             <div class="panel">
                 <div class="panel-body p-states">
-                    <h4 class="title">公告</h4>
+                    <h4 class="title"><a href="/notice/manage">公告</a></h4>
                     <ul class="dropdown-list normal-list">
                         {{range $k,$v := .notices}}
                         <li class="new"> <a href="#noticeModal" data-toggle="modal" data-content="{{$v.Content}}"> <span class="label label-danger"><i class="fa fa-bolt"></i></span> <span class="name">{{$v.Title}} </span> <em class="small">{{getDateMH $v.Created}}</em> </a> </li>
