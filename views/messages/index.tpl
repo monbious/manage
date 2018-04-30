@@ -23,9 +23,8 @@
         </select>
 		<select name="type" class="form-control">
           <option value="">类型</option>
-          <option value="1" {{if eq "1" .condArr.type}}selected{{end}}>评论</option>
-          <option value="2" {{if eq "2" .condArr.type}}selected{{end}}>赞</option>
 		  <option value="3" {{if eq "3" .condArr.type}}selected{{end}}>审批</option>
+          <option value="4" {{if eq "4" .condArr.type}}selected{{end}}>新加</option>
         </select>
         <button type="submit" class="btn btn-primary">搜索</button>
       </form>

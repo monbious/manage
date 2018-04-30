@@ -71,7 +71,7 @@ func ListMessages(condArr map[string]string, page int, offset int) (num int64, e
 	}
 	start := (page - 1) * offset
 
-	qs = qs.OrderBy("-msgid")
+	qs = qs.OrderBy("-created")
 	nums, errs := qs.Limit(offset, start).All(&msg)
 	return nums, errs, msg
 }

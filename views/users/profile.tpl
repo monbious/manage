@@ -28,7 +28,7 @@
             <div class="col-md-12">
               <div class="panel">
                 <div class="panel-body">
-                  <div class="profile-pic text-center"> <img alt="{{getRealname .user.Id}}" src="{{getAvatar .LoginAvatar}}"> </div>
+                  <div class="profile-pic text-center"> <img alt="{{getRealname .user.Id}}" src="{{getAvatar .user.Avatar}}"> </div>
                 </div>
               </div>
             </div>
