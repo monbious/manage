@@ -116,7 +116,7 @@ $(function(){
                 success:function(data) {
                     dialogInfo(data.message)
                     if (data.code) {
-                       //setTimeout(function(){window.location.href="/project/test/"+$('#projectid').val()}, 2000);
+
                     } else {
                         
                     }
