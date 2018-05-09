@@ -23,8 +23,12 @@
       <li><a href="/my/manage"><i class="fa fa-home"></i> <span>我的主页</span></a></li>
       <li><a href="/checkwork/manage"><i class="fa fa-tasks"></i> <span>考勤管理</span></a></li>
       <li><a href="/leave/manage"><i class="fa fa-suitcase"></i> <span>审批管理</span></a></li>
-      <li><a href="/resume/manage"><i class="fa fa-laptop"></i> <span>简历管理</span></a></li>
-      <li><a href="/user/manage"><i class="fa fa-user"></i> <span>组织管理</span></a></li>
+      {{if eq 1 .LoginRole}}
+        <li><a href="/resume/manage"><i class="fa fa-laptop"></i> <span>简历管理</span></a></li>
+      {{end}}
+      {{if eq 1 .LoginRole}}
+        <li><a href="/user/manage"><i class="fa fa-user"></i> <span>组织管理</span></a></li>
+      {{end}}
 
     </ul>
     <!--sidebar nav end-->

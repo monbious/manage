@@ -39,7 +39,7 @@
         <li> <a href="/businesstrip/manage">审批管理</a> </li>
         <li class="active"> 出差 </li>
       </ul>
-      <div class="pull-right"> <a href="/businesstrip/manage" class="hidden-xs btn btn-default">全部</a> <a href="/businesstrip/approval" class="btn btn-warning" style="padding:4px;">待审批</a> <a href="/businesstrip/add" class="btn btn-success">+出差申请</a> </div>
+      <div class="pull-right"> <a href="/businesstrip/manage" class="hidden-xs btn btn-default">全部</a> {{if eq 1 .LoginRole}}<a href="/businesstrip/approval" class="btn btn-warning" style="padding:4px;">待审批</a>{{end}}<a href="/businesstrip/add" class="btn btn-success">+出差申请</a> </div>
     </div>
     <!-- page heading end-->
     <!--body wrapper start-->

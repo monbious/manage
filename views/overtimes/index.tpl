@@ -39,7 +39,7 @@
         <li> <a href="/overtime/manage">审批管理</a> </li>
         <li class="active"> 加班 </li>
       </ul>
-      <div class="pull-right"> <a href="/overtime/manage" class="btn btn-default hidden-xs">全部</a> <a href="/overtime/approval" class="btn btn-warning" style="padding:4px;">待审批</a> <a href="/overtime/add" class="btn btn-success">+我要加班</a> </div>
+      <div class="pull-right"> <a href="/overtime/manage" class="btn btn-default hidden-xs">全部</a> {{if eq 1 .LoginRole}}<a href="/overtime/approval" class="btn btn-warning" style="padding:4px;">待审批</a>{{end}} <a href="/overtime/add" class="btn btn-success">+我要加班</a> </div>
     </div>
     <!-- page heading end-->
     <!--body wrapper start-->

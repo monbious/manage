@@ -39,7 +39,7 @@
         <li> <a href="/expense/manage">审批管理</a> </li>
         <li class="active"> 报销 </li>
       </ul>
-      <div class="pull-right"> <a href="/expense/manage" class="hidden-xs btn btn-default">全部</a> <a href="/expense/approval" class="btn btn-warning" style="padding:4px;">待审批</a> <a href="/expense/add" class="btn btn-success">+我要报销</a> </div>
+      <div class="pull-right"> <a href="/expense/manage" class="hidden-xs btn btn-default">全部</a> {{if eq 1 .LoginRole}}<a href="/expense/approval" class="btn btn-warning" style="padding:4px;">待审批</a>{{end}} <a href="/expense/add" class="btn btn-success">+我要报销</a> </div>
     </div>
     <!-- page heading end-->
     <!--body wrapper start-->

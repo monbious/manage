@@ -18,6 +18,7 @@ type Users struct {
 	Password string
 	Avatar   string
 	Status   int
+	Role     int
 }
 
 type UsersProfile struct {
@@ -65,10 +66,10 @@ func LoginUser(username, password string) (err error, user Users) {
 
 	qs = qs.SetCond(cond)
 	var users Users
-	err = qs.Limit(1).One(&users, "userid", "username", "avatar")
+	err = qs.Limit(1).One(&users, "userid", "username", "avatar", "role")
 	fmt.Println(err)
 	if err == nil {
-		o.Raw("UPDATE pms_users_profile SET lasted = ?,lognum=lognum+? WHERE userid = ?", time.Now().Unix(), 1, users.Id).Exec()
+		o.Raw("UPDATE " + models.TableName("users_profile") + " SET lasted = ?,lognum=lognum+? WHERE userid = ?", time.Now().Unix(), 1, users.Id).Exec()
 	}
 	return err, users
 }
@@ -312,6 +313,7 @@ func AddUserProfile(updUser Users, updPro UsersProfile) error {
 	user.Password = utils.Md5(updUser.Password)
 	user.Avatar = utils.GetAvatar("")
 	user.Status = 1
+	user.Role = 0
 	_, err := o.Insert(user)
 	return err
 }
@@ -403,7 +405,7 @@ func ListUserFind() (num int64, err error, user []UsersFind) {
 	qb.Select("upr.userid", "upr.realname", "p.name AS position", "u.avatar").From(models.TableName("users" + " as u")).
 		LeftJoin(models.TableName("users_profile" + " as upr")).On("upr.userid = u.userid").
 		LeftJoin(models.TableName("positions" + " as p")).On("p.positionid = upr.positionid").
-		Where("u.status=1").
+		Where("u.status=1 and u.role=1").
 		OrderBy("p.name").
 		Desc()
 	sql := qb.String()

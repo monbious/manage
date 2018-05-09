@@ -36,7 +36,9 @@
         <li> <a href="/checkwork/manage">考勤管理</a> </li>
         <li class="active"> 考勤 </li>
       </ul>
-      <div class="pull-right"><a href="/checkwork/all" class="btn btn-success">全部员工考勤</a></div>
+      {{if eq 1 .LoginRole}}
+        <div class="pull-right"><a href="/checkwork/all" class="btn btn-success">全部员工考勤</a></div>
+      {{end}}
     </div>
     <div class="clearfix"></div>
     <!-- page heading end-->

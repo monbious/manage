@@ -61,7 +61,7 @@ func (this *LoginUserController) Post() {
 	err, users := LoginUser(username, password)
 
 	if err == nil {
-		this.SetSession("userLogin", fmt.Sprintf("%d", users.Id)+"||"+users.Username+"||"+users.Avatar)
+		this.SetSession("userLogin", fmt.Sprintf("%d", users.Id)+"||"+users.Username+"||"+users.Avatar+"||"+fmt.Sprintf("%d", users.Role))
 		this.Data["json"] = map[string]interface{}{"code": 1, "message": "贺喜你，登录成功"}
 	} else {
 		this.Data["json"] = map[string]interface{}{"code": 0, "message": "登录失败"}
@@ -214,7 +214,7 @@ func (this *AvatarUserController) Post() {
 	err = jpeg.Encode(file, croppedImg, &jpeg.Options{100})
 	if err == nil {
 		ChangeUserAvatar(this.BaseController.UserUserId, filen)
-		this.SetSession("userLogin", fmt.Sprintf("%d", int64(this.BaseController.UserUserId))+"||"+this.BaseController.UserUsername+"||"+filen)
+		this.SetSession("userLogin", fmt.Sprintf("%d", int64(this.BaseController.UserUserId))+"||"+this.BaseController.UserUsername+"||"+filen+"||"+fmt.Sprintf("%d", this.BaseController.UserRole))
 	}
 	this.Data["json"] = map[string]interface{}{"code": 1, "message": "个性头像设置成功"}
 	this.ServeJSON()
