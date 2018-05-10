@@ -20,18 +20,38 @@
     </div>
     <!--sidebar nav start-->
     <ul class="nav nav-pills nav-stacked custom-nav js-left-nav">
-      <li><a href="/my/manage"><i class="fa fa-home"></i> <span>我的主页</span></a></li>
-      <li><a href="/checkwork/manage"><i class="fa fa-tasks"></i> <span>考勤管理</span></a></li>
-      <li><a href="/leave/manage"><i class="fa fa-suitcase"></i> <span>审批管理</span></a></li>
-      {{if eq 1 .LoginRole}}
-        <li><a href="/resume/manage"><i class="fa fa-laptop"></i> <span>简历管理</span></a></li>
-      {{end}}
-      {{if eq 1 .LoginRole}}
-        <li><a href="/user/manage"><i class="fa fa-user"></i> <span>组织管理</span></a></li>
-      {{end}}
+      <li><a  h="/my/manage" r="{{.LoginRole}}"><i class="fa fa-home"></i> <span>我的主页</span></a></li>
+      <li><a  h="/checkwork/manage" r="{{.LoginRole}}"><i class="fa fa-tasks"></i> <span>考勤管理</span></a></li>
+      <li><a  h="/leave/manage" r="{{.LoginRole}}"><i class="fa fa-suitcase"></i> <span>审批管理</span></a></li>
+      <li><a  h="/resume/manage" r="{{.LoginRole}}"><i class="fa fa-laptop"></i> <span>简历管理</span></a></li>
+      <li><a  h="/user/manage" r="{{.LoginRole}}"><i class="fa fa-user"></i> <span>组织管理</span></a></li>
 
     </ul>
     <!--sidebar nav end-->
   </div>
+  <style>
+    .left-side-inner ul li a {
+      cursor: pointer;
+    }
+  </style>
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/manage.js"></script>
+  <script>
+    $(function () {
+        $(".left-side-inner ul li a").click(function(){
+            var h = $(this).attr("h");
+            var r = $(this).attr("r");
+            if(r == "0") {
+                if(h == "/resume/manage" || h == "/user/manage") {
+                    dialogInfo("你没有此权限！");
+                } else {
+                    $(this).prop("href", h);
+                }
+            }else{
+                $(this).prop("href", h);
+            }
+        });
+    })
+  </script>
 </div>
 <!-- left side end-->

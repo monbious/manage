@@ -39,7 +39,22 @@
         <li> <a href="/businesstrip/manage">审批管理</a> </li>
         <li class="active"> 出差 </li>
       </ul>
-      <div class="pull-right"> <a href="/businesstrip/manage" class="hidden-xs btn btn-default">全部</a> {{if eq 1 .LoginRole}}<a href="/businesstrip/approval" class="btn btn-warning" style="padding:4px;">待审批</a>{{end}}<a href="/businesstrip/add" class="btn btn-success">+出差申请</a> </div>
+      <div class="pull-right"> <a href="/businesstrip/manage" class="hidden-xs btn btn-default">全部</a> <a h="/businesstrip/approval" id="validated" r="{{.LoginRole}}" class="btn btn-warning" style="padding:4px;cursor: pointer;">待审批</a><a href="/businesstrip/add" class="btn btn-success">+出差申请</a> </div>
+      <script src="/static/js/jquery.min.js"></script>
+      <script src="/static/js/manage.js"></script>
+      <script>
+          $(function(){
+              $("#validated").click(function(){
+                  var h = $(this).attr("h");
+                  var r = $(this).attr("r");
+                  if(r == "0") {
+                      dialogInfo("你没有此权限！");
+                  }else{
+                      $(this).prop("href", h);
+                  }
+              });
+          })
+      </script>
     </div>
     <!-- page heading end-->
     <!--body wrapper start-->
@@ -88,7 +103,6 @@
                 </tr>
                 {{end}}
                 </tbody>
-                
               </table>
               {{template "inc/page.tpl" .}} </div>
           </section>

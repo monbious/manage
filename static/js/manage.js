@@ -1,60 +1,7 @@
 $(function(){
+
 	if (is_mobile()) {
-		//$('body').removeClass('left-side-collapsed');
-		//$('.left-side').hide();
 	}
-	
-	//左侧菜单显示
-	/*
-	var str = $('#permissionModel').val();
-	if (str != "") {
-		var str2 = $('#permissionModelc').val();
-			
-		var strArr = str.split(',');
-		var strtmp;
-		var str2Arr = str2.split(',');
-		var str2tmp;
-		var html = '';
-		var html2= '';
-	
-		for(var i=0;i<strArr.length;i++) {
-			strArrc =strArr[i].split('||');
-			strtmp = strArrc[0].split('-');		
-			var m = 0;	
-			for(var j=0;j<str2Arr.length;j++) {
-				str2Arrc =str2Arr[j].split('||');
-				str2tmp = str2Arrc[0].split('-');			
-				if (str2tmp[1]==strtmp[1]) {		
-					m++;
-					if (m == 1) { html2 += '<ul class="sub-menu-list">'; }			
-					html2 += '<li><a href="/'+(str2Arrc[1].replace(/-/, '/'))+'"> '+str2tmp[0]+'</a></li>';
-				}			
-			}
-			if (m >0) {
-				html2 += '</ul>';
-				html += '<li class="menu-list">';			
-			} else {
-				html += '<li>';
-			}
-			html += '<a href="'+(strArrc[1] == '#' ? '#' : '/'+strArrc[1].replace(/-/, '/'))+'"><i class="fa fa-'+strtmp[2]+'"></i> <span>'+strtmp[0]+'</span></a>';
-			html+=html2
-			html2 = '';
-			html += '</li>';		
-		}	
-		//$('.js-left-nav').append(html);
-	}
-	
-	
-	//左边菜单加选中状态
-	var pre = location.pathname;
-	var qstr = pre.split('/');       
-    if (qstr) {            
-        var lefthref = '/'+qstr[1]+'/'+qstr[2];
-        $('.sub-menu-list a').filter(function(){           
-        	return $(this).attr('href') == lefthref;
-        }).parent().addClass('active').parents('.menu-list').addClass('nav-active');
-    };
-	*/
 	$('.js_checkboxAll').on('click', function(){
 		var that = $(this);
 		var chk = that.parent().prev('table').find('input[type="checkbox"]');
@@ -1737,7 +1684,7 @@ $(function(){
 			setTimeout(function(){ $('#dialogInfo').modal('hide'); }, 1000);
 		},'json');
     });
-	
+
 });
 
 function dialogInfo(msg) {
@@ -1761,7 +1708,7 @@ function dialogInfo(msg) {
   	html += '</div>';
 	html += '</div>';
 	$('body').append(html);
-	$('#dialogInfo').modal('show')  
+	$('#dialogInfo').modal('show');
 }
 
 function dialogAlbum(id, title, summary, status) {

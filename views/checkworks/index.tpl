@@ -36,9 +36,22 @@
         <li> <a href="/checkwork/manage">考勤管理</a> </li>
         <li class="active"> 考勤 </li>
       </ul>
-      {{if eq 1 .LoginRole}}
-        <div class="pull-right"><a href="/checkwork/all" class="btn btn-success">全部员工考勤</a></div>
-      {{end}}
+      <div class="pull-right"><a h="/checkwork/all" id="validated" r="{{.LoginRole}}" style="cursor: pointer;" class="btn btn-success">全部员工考勤</a></div>
+      <script src="/static/js/jquery.min.js"></script>
+      <script src="/static/js/manage.js"></script>
+      <script>
+          $(function(){
+              $("#validated").click(function(){
+                  var h = $(this).attr("h");
+                  var r = $(this).attr("r");
+                  if(r == "0") {
+                      dialogInfo("你没有此权限！");
+                  }else{
+                      $(this).prop("href", h);
+                  }
+              });
+          })
+      </script>
     </div>
     <div class="clearfix"></div>
     <!-- page heading end-->

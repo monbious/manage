@@ -76,13 +76,28 @@
             </div>
             <div class="panel">
                 <div class="panel-body p-states">
-                    <h4 class="title"><a href="{{if eq 1 .LoginRole}}/notice/manage{{else}}#{{end}}">公告</a></h4>
+                    <h4 class="title"><a h="/notice/manage" id="validated" r="{{.LoginRole}}" style="cursor: pointer;">公告</a></h4>
                     <ul class="dropdown-list normal-list">
                         {{range $k,$v := .notices}}
                         <li class="new"> <a href="#noticeModal" data-toggle="modal" data-content="{{$v.Content}}"> <span class="label label-danger"><i class="fa fa-bolt"></i></span> <span class="name">{{$v.Title}} </span> <em class="small">{{getDateMH $v.Created}}</em> </a> </li>
                         {{end}}
                         <!--li class="new"><a href="">See All Notifications</a></li-->
                     </ul>
+                    <script src="/static/js/jquery.min.js"></script>
+                    <script src="/static/js/manage.js"></script>
+                    <script>
+                        $(function(){
+                            $("#validated").click(function(){
+                                var h = $(this).attr("h");
+                                var r = $(this).attr("r");
+                                if(r == "0") {
+                                    dialogInfo("你没有此权限！");
+                                }else{
+                                    $(this).prop("href", h);
+                                }
+                            });
+                        })
+                    </script>
                 </div>
             </div>
         </div>
@@ -105,6 +120,7 @@ $(function(){
 	$('#noticeModal').on('show.bs.modal', function (e) {
 		$('#notice-box').html($(e.relatedTarget).attr('data-content'))
 	});
+
 })
 </script>
 </body>

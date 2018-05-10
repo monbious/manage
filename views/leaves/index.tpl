@@ -51,7 +51,22 @@
         <li> <a href="/leave/manage">审批管理</a> </li>
         <li class="active"> 请假 </li>
       </ul>
-      <div class="pull-right"> <a href="/leave/manage" class="btn btn-default hidden-xs">全部</a> {{if eq 1 .LoginRole}}<a href="/leave/approval" class="btn btn-warning" style="padding:4px;">待审批</a>{{end}} <a href="/leave/add" class="btn btn-success">+我要请假</a> </div>
+      <div class="pull-right"> <a href="/leave/manage" class="btn btn-default hidden-xs">全部</a> <a h="/leave/approval" id="validated" r="{{.LoginRole}}" class="btn btn-warning" style="padding:4px;cursor: pointer;">待审批</a> <a href="/leave/add" class="btn btn-success">+我要请假</a> </div>
+      <script src="/static/js/jquery.min.js"></script>
+      <script src="/static/js/manage.js"></script>
+      <script>
+          $(function(){
+              $("#validated").click(function(){
+                  var h = $(this).attr("h");
+                  var r = $(this).attr("r");
+                  if(r == "0") {
+                      dialogInfo("你没有此权限！");
+                  }else{
+                      $(this).prop("href", h);
+                  }
+              });
+          })
+      </script>
     </div>
     <!-- page heading end-->
     <!--body wrapper start-->
