@@ -38,11 +38,12 @@ $(function(){
                 type:'POST',
                 dataType:'json',
                 success:function(data) {
-                    dialogInfo(data.message)
+                    dialogInfo(data.message);
                     if (data.code) {
-                       setTimeout(function(){window.location.href="/"}, 2000);
+                        setTimeout(function(){ $('#dialogInfo').modal('hide'); }, 1000);
+                        setTimeout(function(){window.location.href="/"}, 2000);
                     } else {
-                       setTimeout(function(){ $('#dialogInfo').modal('hide'); }, 1000);
+                        setTimeout(function(){ $('#dialogInfo').modal('hide'); }, 1000);
                     }
                 }
             });
@@ -51,19 +52,46 @@ $(function(){
     
     $('.js-user-single').on('click', function(){
     	var that = $(this);
-    	var status = that.attr('data-status')
+    	var status = that.attr('data-status');
     	var id = that.attr('data-id');
 		$.post('/user/ajax/status', { status: status, id: id },function(data){
-			dialogInfo(data.message)
+			dialogInfo(data.message);
 			if (data.code) {
 				that.attr('data-status', status == 2 ? 1 : 2).text(status == 2 ? '正常' : '屏蔽').parents('td').prev('td').text(status == 2 ? '屏蔽' : '正常');
+                setTimeout(function(){ $('#dialogInfo').modal('hide'); }, 1000);
 			} else {
-				
-			}
-			setTimeout(function(){ $('#dialogInfo').modal('hide'); }, 1000);
+                setTimeout(function(){ $('#dialogInfo').modal('hide'); }, 1000);
+            }
 		},'json');
-    });    
-   
+    });
+
+    $('.js-user-role').on('click', function(){
+    	var that = $(this);
+    	var role = that.attr('data-role');
+    	var userid = $("#userid").val();
+    	var id = that.attr('data-id');
+    	var isme = false;
+    	if (userid == id) {
+    		if (!confirm("确定把自己设为普通用户吗")) {
+    			return;
+			}
+			isme = true;
+		}
+		$.post('/user/ajax/role', { role: role, id: id },function(data){
+			dialogInfo(data.message);
+            if (data.code) {
+                that.attr('data-role', role == 1 ? 0 : 1).text(role == 1 ? '设为管理员' : '设为普通用户');
+                if (isme){
+                    setTimeout(window.location.href="/logout", 1000);
+                }else{
+                    setTimeout(function(){$('#dialogInfo').modal('hide'); }, 1000);
+                }
+            } else {
+                setTimeout(function(){$('#dialogInfo').modal('hide'); }, 1000);
+            }
+		},'json');
+    });
+
     $('#userprofile-form').validate({
         ignore:'',        
 		rules : {
@@ -1311,7 +1339,7 @@ $(function(){
                 type:'POST',
                 dataType:'json',
                 success:function(data) {
-                    dialogInfo(data.message)
+                    dialogInfo(data.message);
                     if (data.code) {
 						setTimeout(function(){ window.location.reload() }, 2000);
                     } else {
@@ -1342,7 +1370,7 @@ $(function(){
                 type:'POST',
                 dataType:'json',
                 success:function(data) {
-                    dialogInfo(data.message)
+                    dialogInfo(data.message);
                     if (data.code) {
 						setTimeout(function(){ window.location.href='/goout/manage'; }, 2000);
                     } else {
@@ -1356,7 +1384,7 @@ $(function(){
 		var that = $(this);
 		var leaveid = that.attr('data-id');
 		$.post('/goout/ajax/status', {id:leaveid},function(data){
-			dialogInfo(data.message)
+			dialogInfo(data.message);
 			if (data.code) {
 				setTimeout(function(){ window.location.reload(); }, 2000);
 			} else {
@@ -1370,7 +1398,7 @@ $(function(){
 		var that = $(this);
 		var leaveid = that.attr('data-id');
 		$.post('/goout/ajax/delete', {id:leaveid},function(data){
-			dialogInfo(data.message)
+			dialogInfo(data.message);
 			if (data.code) {
 				setTimeout(function(){ window.location.reload(); }, 2000);
 			} else {
@@ -1393,7 +1421,7 @@ $(function(){
                 type:'POST',
                 dataType:'json',
                 success:function(data) {
-                    dialogInfo(data.message)
+                    dialogInfo(data.message);
                     if (data.code) {
 						window.location.reload();
                     } else {
@@ -1422,7 +1450,7 @@ $(function(){
                 type:'POST',
                 dataType:'json',
                 success:function(data) {
-                    dialogInfo(data.message)
+                    dialogInfo(data.message);
                     if (data.code) {
 						setTimeout(function(){ window.location.href='/oagood/manage'; }, 2000);
                     } else {
@@ -1436,7 +1464,7 @@ $(function(){
 		var that = $(this);
 		var leaveid = that.attr('data-id');
 		$.post('/oagood/ajax/status', {id:leaveid},function(data){
-			dialogInfo(data.message)
+			dialogInfo(data.message);
 			if (data.code) {
 				setTimeout(function(){ window.location.reload(); }, 2000);
 			} else {
@@ -1450,7 +1478,7 @@ $(function(){
 		var that = $(this);
 		var leaveid = that.attr('data-id');
 		$.post('/oagood/ajax/delete', {id:leaveid},function(data){
-			dialogInfo(data.message)
+			dialogInfo(data.message);
 			if (data.code) {
 				setTimeout(function(){ window.location.reload(); }, 2000);
 			} else {
@@ -1473,7 +1501,7 @@ $(function(){
                 type:'POST',
                 dataType:'json',
                 success:function(data) {
-                    dialogInfo(data.message)
+                    dialogInfo(data.message);
                     if (data.code) {
 						window.location.reload();
                     } else {
@@ -1506,7 +1534,7 @@ $(function(){
                 type:'POST',
                 dataType:'json',
                 success:function(data) {
-                    dialogInfo(data.message)
+                    dialogInfo(data.message);
                     if (data.code) {
 						setTimeout(function(){ window.location.href='/overtime/manage'; }, 2000);
                     } else {
@@ -1520,7 +1548,7 @@ $(function(){
 		var that = $(this);
 		var leaveid = that.attr('data-id');
 		$.post('/overtime/ajax/status', {id:leaveid},function(data){
-			dialogInfo(data.message)
+			dialogInfo(data.message);
 			if (data.code) {
 				setTimeout(function(){ window.location.reload(); }, 2000);
 			} else {
@@ -1534,7 +1562,7 @@ $(function(){
 		var that = $(this);
 		var leaveid = that.attr('data-id');
 		$.post('/overtime/ajax/delete', {id:leaveid},function(data){
-			dialogInfo(data.message)
+			dialogInfo(data.message);
 			if (data.code) {
 				setTimeout(function(){ window.location.reload(); }, 2000);
 			} else {
@@ -1557,7 +1585,7 @@ $(function(){
                 type:'POST',
                 dataType:'json',
                 success:function(data) {
-                    dialogInfo(data.message)
+                    dialogInfo(data.message);
                     if (data.code) {
 						window.location.reload();
                     } else {
@@ -1584,7 +1612,7 @@ $(function(){
                 type:'POST',
                 dataType:'json',
                 success:function(data) {
-                    dialogInfo(data.message)
+                    dialogInfo(data.message);
                     if (data.code) {
 						setTimeout(function(){ window.location.href='/group/manage'; }, 2000);
                     } else {
@@ -1599,7 +1627,7 @@ $(function(){
 		var that = $(this);
 		var id = that.attr('data-id');
 		$.post('/group/ajax/delete', {ids:id},function(data){
-			dialogInfo(data.message)
+			dialogInfo(data.message);
 			if (data.code) {
 				setTimeout(function(){ window.location.reload() }, 2000);
 			} else {
@@ -1624,7 +1652,7 @@ $(function(){
                 type:'POST',
                 dataType:'json',
                 success:function(data) {
-                    dialogInfo(data.message)
+                    dialogInfo(data.message);
                     if (data.code) {
 						setTimeout(function(){ window.location.href='/permission/manage'; }, 2000);
                     } else {
@@ -1638,7 +1666,7 @@ $(function(){
 		var that = $(this);
 		var id = that.attr('data-id');
 		$.post('/permission/ajax/delete', {ids:id},function(data){
-			dialogInfo(data.message)
+			dialogInfo(data.message);
 			if (data.code) {
 				setTimeout(function(){ window.location.reload() }, 2000);
 			} else {
@@ -1661,7 +1689,7 @@ $(function(){
                 type:'POST',
                 dataType:'json',
                 success:function(data) {
-                    dialogInfo(data.message)
+                    dialogInfo(data.message);
                     if (data.code) {
                        setTimeout(function(){window.location.href="/group/user/"+$('#groupid').val()}, 2000);
                     } else {
@@ -1675,7 +1703,7 @@ $(function(){
     	var that = $(this);
 		var testid = that.attr('data-id');	
 		$.post('/group/user/ajax/delete', {id:testid},function(data){
-			dialogInfo(data.message)
+			dialogInfo(data.message);
 			if (data.code) {
 				that.parents('tr').remove();
 			} else {
@@ -1700,10 +1728,6 @@ function dialogInfo(msg) {
     html += '<div class="modal-body">';
     html += '<p>'+msg+'</p>';
     html += '</div>';
-    //html += '<div class="modal-footer">';
-    //html += ' <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
-    //html += ' <button type="button" class="btn btn-primary">Send message</button>';
-    //html += '</div>';
     html += '</div>';
   	html += '</div>';
 	html += '</div>';

@@ -24,10 +24,10 @@ type MainController struct {
 }
 
 func (this *MainController) Get() {
+
 	userStr := this.GetSession("userLogin")
 	userId := strings.Split(userStr.(string), "||")[0]
 	this.Redirect("/user/show/" + userId, 302)
-	//this.TplName = "index.tpl"
 }
 
 //登录
@@ -245,6 +245,35 @@ func (this *AjaxStatusUserController) Post() {
 		this.Data["json"] = map[string]interface{}{"code": 1, "message": "用户状态更改成功"}
 	} else {
 		this.Data["json"] = map[string]interface{}{"code": 0, "message": "用户状态更改失败"}
+	}
+	this.ServeJSON()
+}
+
+//用户角色更改异步操作
+type AjaxRoleUserController struct {
+	controllers.BaseController
+}
+
+func (this *AjaxRoleUserController) Post() {
+	id, _ := this.GetInt64("id")
+	if id <= 0 {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": "请选择用户"}
+		this.ServeJSON()
+		return
+	}
+	role, _ := this.GetInt("role")
+	if role < 0 || role > 1 {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": "请选择操作状态"}
+		this.ServeJSON()
+		return
+	}
+
+	err := ChangeUserRole(id, role)
+
+	if err == nil {
+		this.Data["json"] = map[string]interface{}{"code": 1, "message": "用户角色更改成功"}
+	} else {
+		this.Data["json"] = map[string]interface{}{"code": 0, "message": "用户角色更改失败"}
 	}
 	this.ServeJSON()
 }

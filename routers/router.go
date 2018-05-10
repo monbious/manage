@@ -19,6 +19,7 @@ func init() {
 	//用户
 	beego.Router("/user/manage", &users.ManageUserController{})
 	beego.Router("/user/ajax/status", &users.AjaxStatusUserController{})
+	beego.Router("/user/ajax/role", &users.AjaxRoleUserController{})
 	beego.Router("/user/edit/:id", &users.EditUserController{})
 	beego.Router("/user/add", &users.AddUserController{})
 	beego.Router("/user/avatar", &users.AvatarUserController{})

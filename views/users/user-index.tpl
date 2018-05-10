@@ -63,7 +63,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    
+                    <input type="hidden" id="userid" value="{{.LoginUserid}}"/>
                     {{range $k,$v := .user}}
                     <tr>
                       <td>{{$v.Username}}</td>
@@ -73,12 +73,18 @@
                       <td>{{$v.Profile.Emerphone}}</td>
                       <td>{{getDate $v.Profile.Lasted}}</td>
                       <td>{{if eq 1 $v.Status}}正常{{else}}屏蔽{{end}}</td>
-                      <td><div class="btn-group">
+                      <td>
+                        <div class="btn-group">
                           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 操作<span class="caret"></span> </button>
                           <ul class="dropdown-menu">
                             <li><a href="/user/edit/{{$v.Id}}">编辑</a></li>
-                            <!--li role="separator" class="divider"></li>
-							<li><a href="/user/permission/{{$v.Id}}">权限</a></li-->
+                            <li role="separator" class="divider"></li>
+                            {{if eq 0 $v.Role}}
+                            <li><a href="javascript:;" class="js-user-role"  data-id="{{$v.Id}}" data-role="1">设为管理员</a></li>
+                            {{else}}
+                            <li><a href="javascript:;" class="js-user-role"  data-id="{{$v.Id}}" data-role="0">设为普通用户</a></li>
+                            {{end}}
+
                             <li role="separator" class="divider"></li>
                             {{if eq 1 $v.Status}}
                             <li><a href="javascript:;" class="js-user-single" data-id="{{$v.Id}}" data-status="2">屏蔽</a></li>
@@ -88,7 +94,8 @@
 							<li role="separator" class="divider"></li>
 							<li><a href="/checkwork/all?keyword={{$v.Profile.Realname}}">考勤</a></li>
                           </ul>
-                        </div></td>
+                        </div>
+                      </td>
                     </tr>
                     {{end}}
                     </tbody>
@@ -108,5 +115,6 @@
   <!-- main content end-->
 </section>
 {{template "inc/foot.tpl" .}}
+
 </body>
 </html>

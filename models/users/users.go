@@ -376,6 +376,21 @@ func ChangeUserStatus(id int64, status int) error {
 	}
 }
 
+//更改用户角色
+func ChangeUserRole(id int64, role int) error {
+	o := orm.NewOrm()
+
+	user := Users{Id: id}
+	err := o.Read(&user, "userid")
+	if nil != err {
+		return err
+	} else {
+		user.Role = role
+		_, err := o.Update(&user)
+		return err
+	}
+}
+
 //更改用户头像
 func ChangeUserAvatar(id int64, avatar string) error {
 	o := orm.NewOrm()

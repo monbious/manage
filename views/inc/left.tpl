@@ -34,24 +34,6 @@
       cursor: pointer;
     }
   </style>
-  <script src="/static/js/jquery.min.js"></script>
-  <script src="/static/js/manage.js"></script>
-  <script>
-    $(function () {
-        $(".left-side-inner ul li a").click(function(){
-            var h = $(this).attr("h");
-            var r = $(this).attr("r");
-            if(r == "0") {
-                if(h == "/resume/manage" || h == "/user/manage") {
-                    dialogInfo("你没有此权限！");
-                } else {
-                    $(this).prop("href", h);
-                }
-            }else{
-                $(this).prop("href", h);
-            }
-        });
-    })
-  </script>
+
 </div>
 <!-- left side end-->

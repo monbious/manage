@@ -52,6 +52,7 @@
                   }else{
                       $(this).prop("href", h);
                   }
+                  setTimeout(function(){ $('#dialogInfo').modal('hide'); }, 1000);
               });
           })
       </script>
