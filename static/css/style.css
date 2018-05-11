@@ -72,7 +72,7 @@ hr {
 
 .form-signin {
     max-width: 330px;
-    margin: 100px auto;
+    margin: 200px auto;
     background: #fff;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -80,7 +80,7 @@ hr {
 
 .form-signin .form-signin-heading {
     margin: 0;
-    padding: 25px 15px 0;
+    padding: 10px 10px 0;
     text-align: center;
     color: #fff;
     position: relative;

@@ -14,8 +14,6 @@
 <div class="container">
     <form class="form-signin" id="login-form">
         <div class="form-signin-heading text-center">
-            <!--<h1 class="sign-title">登录</h1>
-            <img src="/static/img/logo.png"  style="width:120px;"/>-->
         </div>
         <div class="login-wrap">
             <input type="text" class="form-control" name="username" placeholder="请填写用户名" autofocus>
