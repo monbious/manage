@@ -51,24 +51,3 @@ func LoadImage(path string) (img image.Image, err error) {
 	img, _, err = image.Decode(file)
 	return
 }
-
-/*file, err := os.Open("./" + filepath)
-if err != nil {
-	fmt.Println(err)
-}
-defer file.Close()
-
-file1, err := os.Create(dir + "/" + "test1.jpg")
-if err != nil {
-	fmt.Println(err)
-}
-defer file1.Close()
-
-m, _, _ := image.Decode(file) // 图片文件解码
-rgbImg := m.(*image.YCbCr)
-subImg := rgbImg.SubImage(image.Rect(0, 0, 200, 200)).(*image.YCbCr) //图片裁剪x0 y0 x1 y1
-err = jpeg.Encode(file1, subImg, &jpeg.Options{100})                 //图像质量值为100，是最好的图像显示
-if err != nil {
-	fmt.Println(err)
-}
-*/

@@ -195,7 +195,6 @@ func (this *AvatarUserController) Post() {
 			filepath = strings.Replace(dir, ".", "", 1) + "/" + filename
 		}
 
-		//utils.DoImageHandler(filepath, 200)
 	} else {
 		filepath = this.GetString("avatar")
 	}

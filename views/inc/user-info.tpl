@@ -35,7 +35,6 @@
         <li><a href="/user/profile"><i class="fa fa-cog"></i> 基本资料</a></li>
 		<li><a href="/user/avatar"><i class="fa fa-camera"></i> 更换头像</a></li>
 		<li><a href="/user/password"><i class="fa fa-cog"></i> 更换密码</a></li>
-		<!--<li><a href="/my/task"><i class="fa fa-th-list"></i> 我的任务</a></li>-->
         <li><a href="/logout"><i class="fa fa-sign-out"></i> 退出</a></li>
       </ul>
     </li>
