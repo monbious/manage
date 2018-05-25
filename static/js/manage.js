@@ -1124,7 +1124,7 @@ $(function(){
                 success:function(data) {
                     dialogInfo(data.message)
                     if (data.code) {
-						setTimeout(function(){ window.location.href="/leave/manage" }, 2000);
+                    	setTimeout(function(){ window.location.href="/leave/manage" }, 1000);
                     } else {
                        setTimeout(function(){ $('#dialogInfo').modal('hide'); }, 1000);
                     }															

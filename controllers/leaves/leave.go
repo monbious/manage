@@ -206,7 +206,6 @@ type AddLeaveController struct {
 func (this *AddLeaveController) Get() {
 	var leave Leaves
 	this.Data["leave"] = leave
-
 	_, _, users := ListUserFind()
 	this.Data["users"] = users
 
@@ -261,10 +260,6 @@ func (this *AddLeaveController) Post() {
 		filename := h.Filename
 			this.SaveToFile("picture", dir+"/"+filename)
 			filepath = strings.Replace(dir, ".", "", 1) + "/" + filename
-	}else{
-		this.Data["json"] = map[string]interface{}{"code": 0, "message": err}
-		this.ServeJSON()
-		return
 	}
 
 	var leave Leaves
